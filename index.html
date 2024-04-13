@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body style="height: 100vh; align-content: center;">
+    <form class="p-4 border border-secondary d-flex flex-column gap-4 m-auto" id="data-form" style="max-width: 400px;">
+        <div class="form-group">
+            <label for="income">
+                Enter gross annual income (in Rupees) 
+                <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" 
+                    title="Gross annual income is your total salary in a year before any deductions">
+                </i>
+            </label>
+            <div class="field d-flex px-2 border border-secondary rounded">
+                <input type="text" class="form-control border-0" id="income">
+                <i class="fa fa-exclamation-circle m-auto d-none" aria-hidden="true" data-toggle="tooltip" data-placement="top" 
+                title="Please enter numbers only"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="extra-income">
+                Enter extra income 
+                <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" 
+                    title="All of your extra income from your other sources of income">
+                </i>
+            </label>
+            <div class="field d-flex px-2 border border-secondary rounded">
+                <input type="text" class="form-control border-0" id="extra-income">
+                <i class="fa fa-exclamation-circle m-auto d-none" aria-hidden="true" data-toggle="tooltip" data-placement="top" 
+                title="Please enter numbers only"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age-group">
+                Enter age group 
+                <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" 
+                    title="Specify what age group you belong to, this is important because the tax is applied based on your age">
+                </i>
+            </label>
+            <select name="age-group" class="form-select border border-secondary" id="age-group">
+                <option value="young">&lt; 40</option>
+                <option value="middle-aged">≥ 40 & &lt; 60</option>
+                <option value="old">≥ 60</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="deductions">
+                Enter total applicable deductions 
+                <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" 
+                    title="You can claim deductions under various sections of the Income Tax Act, such as Section 80C (for investments like Provident Fund, PPF, or life insurance), Section 80D (for health insurance premiums), and Section 24b (for home loan interest).">
+                </i>
+            </label>
+            <div class="field d-flex px-2 border border-secondary rounded">
+                <input type="text" class="form-control border-0" id="deductions">
+                <i class="fa fa-exclamation-circle m-auto d-none" aria-hidden="true" data-toggle="tooltip" data-placement="top" 
+                title="Please enter numbers only"></i>
+            </div>
+        </div>
+        <button class="btn btn-primary text-light" type="submit">Submit</button>
+    </form>
+    <div class="modal" style="align-content: center;" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div> -->
+            <div class="modal-body text-center">
+              <p class="display-4">Your overall income will be</p>
+              <p class="display-4" id="overall-income"></p>
+              <p display-6>after tax deductions</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary m-auto" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBZ5XkzM8NkcymIOuauVU-0ucghNDYW1aQ",
+      authDomain: "tax-calculator-inr.firebaseapp.com",
+      projectId: "tax-calculator-inr",
+      storageBucket: "tax-calculator-inr.appspot.com",
+      messagingSenderId: "38573283329",
+      appId: "1:38573283329:web:f51f5ce5cd2991c31f0800",
+      measurementId: "G-M5NWKL8157"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="./script.js"></script>
+</html>
