@@ -24,6 +24,8 @@ The Screenshots below will help in assessment of test cases.
 ![Screenshot-4](https://tax-calculator-inr.web.app/screenshots/Screenshot4.png)
 ![Screenshot-5](https://tax-calculator-inr.web.app/screenshots/Screenshot5.png)
 ![Screenshot-6](https://tax-calculator-inr.web.app/screenshots/Screenshot6.png)
+![Screenshot-7](https://tax-calculator-inr.web.app/screenshots/Screenshot7.png)
+![Screenshot-8](https://tax-calculator-inr.web.app/screenshots/Screenshot8.png)
 
 ## Support
 For any kind of queries, issues, feedbacks or inquiries, contact to md.riyazuddin.dev@gmail.com
